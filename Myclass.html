@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JavaScript Example</title>
+  </head>
+  <body>
+    <h1>JavaScript Example</h1>
+    <pre id="output"></pre>
+
+    <script type="text/javascript">
+      const output = document.getElementById("output");
+      function print(text) {
+        output.textContent += text + "\n";
+      }
+
+      async function run() {
+        const map = new Map();
+
+        for (let i = 0; i < 2; i++) {
+          const input = prompt("Please select yes or no from the drop down menu: [yes] [no]");
+
+          if (input === "yes" || input === "no") {
+            const key = Date.now();
+            map.set(key, input);
+            print(`You selected ${input} at ${key}`);
+            await new Promise(resolve => setTimeout(resolve, 5000));
+          } else {
+            print("Invalid input. Please select yes or no.");
+            break;
+          }
+        }
+
+        let yesCount = 0;
+        for (const value of map.values()) {
+          if (value === "yes") {
+            yesCount++;
+          }
+        }
+        if (yesCount === 2) {
+          print("Agreement reached");
+        } else {
+          print("Agreement not reached");
+        }
+      }
+
+      run();
+    </script>
+  </body>
+</html>
