@@ -1,3 +1,54 @@
+<script src="https://apis.google.com/js/api.js"></script>
+
+
+
+
+
+
+
+// Load the Google API Client Library.
+gapi.load('client:auth2', function() {
+  // Initialize the Google API client with your client ID and secret.
+  gapi.client.init({
+    clientId: 'f77d3bfb-598c-4c8c-94e4-d0fe174c3e13',
+    scope: 'profile'
+  }).then(function() {
+    // Listen for sign-in state changes.
+    gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+    // Handle the initial sign-in state.
+    updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+  });
+});
+
+function updateSigninStatus(isSignedIn) {
+  if (isSignedIn) {
+    // User is signed in. Get their profile information.
+    var profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
+    console.log('ID: ' + profile.getId());
+    console.log('Full Name: ' + profile.getName());
+    console.log('Given Name: ' + profile.getGivenName());
+    console.log('Family Name: ' + profile.getFamilyName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail());
+  } else {
+    // User is not signed in. Start the sign-in process.
+    gapi.auth2.getAuthInstance().signIn();
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html>
   <head>
