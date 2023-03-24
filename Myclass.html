@@ -1,16 +1,11 @@
 <script src="https://apis.google.com/js/api.js"></script>
 
 
-
-
-
-
-
 // Load the Google API Client Library.
 gapi.load('client:auth2', function() {
   // Initialize the Google API client with your client ID and secret.
   gapi.client.init({
-    clientId: 'f77d3bfb-598c-4c8c-94e4-d0fe174c3e13',
+    clientId: '688d5f51-c699-4dd9-9716-ddacd836beb3',
     scope: 'profile'
   }).then(function() {
     // Listen for sign-in state changes.
@@ -36,16 +31,6 @@ function updateSigninStatus(isSignedIn) {
     gapi.auth2.getAuthInstance().signIn();
   }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
